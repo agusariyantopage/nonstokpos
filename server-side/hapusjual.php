@@ -1,4 +1,6 @@
 <?php
+session_start();
+$backend_level=$_SESSION['backend_level'];
 include "../function.php";
 include "../koneksi.php";
 $id_jual = $_POST['idjual'];
@@ -86,5 +88,5 @@ echo '
 
     </table>
 
-    <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah anda yakin akan menghapus data transaksi ini?')"><i class="fas fa-trash"></i> Proses Hapus</button>
+    <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah anda yakin akan menghapus data transaksi ini?')" <?php if($backend_level>1){?>disabled <?php } ?>><i class="fas fa-trash"></i> Proses Hapus</button>
 </form>

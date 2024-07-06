@@ -112,6 +112,27 @@ if (!empty($_POST)) {
 
         $link = 'location:../index.php?p=penjualan&last=' . md5($id_jual);
         header($link);
+    } else if ($_POST['aksi'] == 'update-penjualan') { // (Tanggal & Pelanggan Saja)
+        $id_jual = $_POST['id_jual'];
+        $id_anggota = $_POST['id_anggota'];
+        $tanggal_transaksi = $_POST['tanggal_transaksi'];
+        $deskripsi_transaksi='Transaksi Penjualan #'.$id_jual;
+
+        // UPDATE Tabel Jual
+        $sql1 = "UPDATE jual SET id_anggota=$id_anggota,tanggal_transaksi='$tanggal_transaksi' where id_jual=$id_jual";
+        mysqli_query($koneksi, $sql1);
+        pesan_transaksi($koneksi);        
+
+        // UPDATE Tabel Pembayaran
+        $sql3 = "UPDATE jual_pembayaran SET tanggal_transaksi='$tanggal_transaksi' where id_jual=$id_jual";
+        mysqli_query($koneksi, $sql3);
+
+        // UPDATE Tabel Jurnal
+        $sql4 = "UPDATE akun_jurnal SET tanggal_transaksi='$tanggal_transaksi' where deskripsi_transaksi='$deskripsi_transaksi'";
+        mysqli_query($koneksi, $sql4);        
+
+        // Redirection
+        header('location:../index.php?p=daftar-penjualan');
     } else if ($_POST['aksi'] == 'hapus-penjualan') {
         $id_jual = $_POST['id_jual'];
         $id_akun_jurnal = $_POST['id_akun_jurnal'];
