@@ -159,7 +159,7 @@
           </div>
           <?php
           if ($grandtotal > 0) {
-            echo "Pilih Metode Pembayaran : ";
+            echo "Pilih Metode Pembayaran : <button type='button' data-toggle='modal' data-target='#tambahAnggotaModal' class='btn btn-link'>+ Tambah Pelanggan Baru</button>";
             echo "<div class='row'>";
             echo "<div class='col-sm-6 mb-1'>";
             echo "<button type='button' class='btn btn-success btn-block' data-toggle='modal' data-target='#simpanJualModalKas'><i class='fas fa-money-bill-alt'></i> Pembayaran Tunai </button>";
@@ -354,3 +354,50 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Untuk Tambah Anggota -->
+<div class="modal fade" id="tambahAnggotaModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="editModalLabel">Tambah Anggota</h5>
+         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form method="post" enctype="multipart/form-data" action="aksi/anggota.php">
+           <input type="hidden" name="aksi" value="tambah">
+           <input type="hidden" name="redirect" value="penjualan">
+           <div>
+             <label for="no_identitas">Nomer Identitas</label>
+             <input type="text" name="no_identitas" class="form-control">
+           </div>
+           <div>
+             <label for="tanggal_bergabung">Tanggal Bergabung</label>
+             <input type="date" name="tanggal_bergabung" class="form-control">
+           </div>
+           <div>
+             <label for="nama">Nama</label>
+             <input type="text" name="nama" class="form-control">
+           </div>
+           <div>
+             <label for="alamat">Alamat</label>
+             <textarea name="alamat" id="alamat" class="form-control" rows="3"></textarea>
+           </div>
+           <div>
+             <label for="telepon">Nomor Telepon</label>
+             <input type="text" name="telepon" class="form-control">
+           </div>
+           <div>
+             <label for="email">Email</label>
+             <input type="email" name="email" class="form-control">
+           </div>
+           
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+         <button type="submit" class="btn btn-primary">Tambah</button>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>

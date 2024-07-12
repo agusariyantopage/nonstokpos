@@ -19,13 +19,18 @@ if (!empty($_POST)) {
         $alamat = $_POST['alamat'];
         $telepon = $_POST['telepon'];
         $email = $_POST['email'];
-       
+
 
         $sql = "insert into anggota (no_identitas, tanggal_bergabung, nama, alamat, telepon, email, dibuat_pada, diubah_pada) values('$no_identitas', '$tanggal_bergabung', '$nama', '$alamat', '$telepon', '$email', DEFAULT, DEFAULT)";
         mysqli_query($koneksi, $sql);
         pesan_transaksi($koneksi);
         //echo $sql;
-        header('location:../index.php?p=anggota');
+        if (!empty($_POST['redirect'])) {
+            $redirect=$_POST['redirect'];
+            header('location:../index.php?p='.$redirect);
+        } else {
+            header('location:../index.php?p=anggota');
+        }
     } else if ($_POST['aksi'] == 'ubah') {
         $id_anggota = $_POST['id_anggota'];
         $no_identitas = $_POST['no_identitas'];
@@ -34,7 +39,7 @@ if (!empty($_POST)) {
         $alamat = $_POST['alamat'];
         $telepon = $_POST['telepon'];
         $email = $_POST['email'];
-        
+
 
         $sql = "update anggota set no_identitas='$no_identitas', tanggal_bergabung='$tanggal_bergabung', nama='$nama', alamat='$alamat', telepon='$telepon', email='$email', dibuat_pada=dibuat_pada, diubah_pada=DEFAULT where id_anggota=$id_anggota";
         // echo $sql;
@@ -51,21 +56,21 @@ if (!empty($_POST)) {
     } else if ($_POST['aksi'] == 'proses-poin') {
         $tanggal_awal = $_POST['tanggal_awal'];
         $tanggal_akhir = $_POST['tanggal_akhir'];
-        $tanggal=date('Y-m-d');
+        $tanggal = date('Y-m-d');
         $poin = $_POST['poin'];
 
         $sql_while = "select jual.id_anggota,nama,alamat,is_individual,sum(total) as kontribusi from jual,anggota where is_individual=1 and jual.id_anggota=anggota.id_anggota and (tanggal_transaksi BETWEEN '$tanggal_awal' and '$tanggal_akhir') group by jual.id_anggota";
-        $query_while=mysqli_query($koneksi, $sql_while);
-        while($data_while=mysqli_fetch_array($query_while)){
-            $id_anggota=$data_while['id_anggota'];
-            $jumlah=$data_while['kontribusi'] / $poin;
-            $keterangan="Poin Belanja Periode $tanggal_awal S/D $tanggal_akhir";
+        $query_while = mysqli_query($koneksi, $sql_while);
+        while ($data_while = mysqli_fetch_array($query_while)) {
+            $id_anggota = $data_while['id_anggota'];
+            $jumlah = $data_while['kontribusi'] / $poin;
+            $keterangan = "Poin Belanja Periode $tanggal_awal S/D $tanggal_akhir";
 
-            $sql1="INSERT INTO anggota_mutasi_saldo(id_anggota,tanggal,jumlah,keterangan) VALUES($id_anggota,'$tanggal',$jumlah,'$keterangan')";
-            $sql2="UPDATE anggota SET saldo=saldo+$jumlah WHERE id_anggota=$id_anggota";
-            
-            mysqli_query($koneksi,$sql1);
-            mysqli_query($koneksi,$sql2);
+            $sql1 = "INSERT INTO anggota_mutasi_saldo(id_anggota,tanggal,jumlah,keterangan) VALUES($id_anggota,'$tanggal',$jumlah,'$keterangan')";
+            $sql2 = "UPDATE anggota SET saldo=saldo+$jumlah WHERE id_anggota=$id_anggota";
+
+            mysqli_query($koneksi, $sql1);
+            mysqli_query($koneksi, $sql2);
             // echo $sql1."<br>";
             // echo $sql2."<br>";
         }
