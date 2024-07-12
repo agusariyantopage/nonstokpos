@@ -162,7 +162,7 @@ date_default_timezone_set('Asia/Singapore');
       <strong>Copyright &copy; 2021 <a href="https://backtoskull.wordpress.com">Agus Ariyanto</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0
+        <b>Version</b> 1.0 (Last Update : <?= $APP_VERSION_LAST_UPDATE; ?>)
       </div>
     </footer>
 
