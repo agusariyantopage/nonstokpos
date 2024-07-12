@@ -330,6 +330,16 @@ date_default_timezone_set('Asia/Singapore');
 
         })
       }
+      if (statusProses === 'SUKSES UPDATE VERSI') {
+        Swal.fire({
+          //position: 'top-end',
+          icon: 'success',
+          title: 'Berhasil Mengupdate Versi Aplikasi',
+          showConfirmButton: false,
+          timer: 4000
+
+        })
+      }
       if (statusProses === 'SUKSES') {
         Swal.fire({
           //position: 'top-end',

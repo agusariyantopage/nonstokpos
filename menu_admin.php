@@ -118,5 +118,11 @@
                   <p>Restore</p>
                 </a>
               </li>              
+              <li class="nav-item">
+                <a href="aksi/get-update.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Get Update</p>
+                </a>
+              </li>              
             </ul>
           </li>
