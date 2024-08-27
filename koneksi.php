@@ -3,7 +3,7 @@
     $BASE_URL="http://localhost/pos/";
     $APP_TITLE="APP POS";
     $APP_VERSION="1.0";
-    $APP_VERSION_LAST_UPDATE="12 Juli 2024";
+    $APP_VERSION_LAST_UPDATE="27 Agustus 2024";
     $APP_COMPANY_NAME="Top Advertising";
     $APP_COMPANY_ADDRESS="Jl. Diponegoro no 63 Denpasar - Bali";
     $APP_COMPANY_PHONE="087863197700";

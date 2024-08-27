@@ -70,32 +70,7 @@
                     </td>
                     
                   </tr>
-                  <!-- Modal Edit -->
-                  <div class="modal fade" id="editModal<?= $kolom['id_akun_jurnal']; ?>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="editModalLabel">Ubah Jurnal</h5>
-                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <form action="aksi/akun.php" method='post'>
-                            <input type="hidden" name="aksi" value="ubah">
-                            <label for="Jurnal">Jurnal</label>
-                            <input type="hidden" name="id" value="<?= $kolom['id_akun_jurnal']; ?>">
-                            <input type="text" value="<?= $kolom['akun']; ?>" required class="form-control" name="Jurnal">
-                            <input type="text" name="start" value="">
-                            <label for="Jurnal">Jurnal</label>
-
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                          <button type="submit" class="btn btn-primary">Ubah</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
                 <?php
                 }
                 ?>
